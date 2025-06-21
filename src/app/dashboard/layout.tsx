@@ -1,14 +1,14 @@
+import Sidebar from "@/components/dashboard/menu-general/Sidebar";
+
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // const cookieStore = await cookies();
-  // const token = cookieStore.get("token");
-  // if (token) {
-  //   const userData = await validToken(token?.value);
-  //   console.log(userData);
-  // }
-
-  return <div>{children}</div>;
+  return (
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <main className="text-white p-4 ">{children}</main>
+    </div>
+  );
 }
