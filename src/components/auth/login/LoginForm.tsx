@@ -1,103 +1,84 @@
+// src/components/auth/login/LoginForm.tsx
 "use client";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { useLoginForm } from "@/hooks/useLoginForm";
+import { Badge } from "@/components/ui/badge";
+import { Loader2 } from "lucide-react";
+
 const LoginForm = () => {
-  const [identifier, setIdentifier] = useState(""); // username or email
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const saved = localStorage.getItem("rememberMeData");
-    if (saved) {
-      const { id, remember, password } = JSON.parse(saved);
-      setIdentifier(id);
-      setRememberMe(remember);
-      setPassword(password);
-    }
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Si el usuario marcó "Recuérdame", guardamos en localStorage
-    if (rememberMe) {
-      localStorage.setItem(
-        "rememberMeData",
-        JSON.stringify({ id: identifier, remember: true, password: password })
-      );
-    } else {
-      localStorage.removeItem("rememberMeData");
-    }
-
-    try {
-      const response = await axios.post("api/auth/login", {
-        username: identifier,
-        password: password,
-      });
-      const data = response.data;
-      if (data.error) {
-        // manejar error (mostrar mensaje)
-        console.error(data.error);
-      } else {
-        router.push("/dashboard");
-      }
-    } catch (err) {
-      console.error("Error en login:", err);
-    }
-  };
+  const {
+    identifier,
+    setIdentifier,
+    password,
+    setPassword,
+    rememberMe,
+    setRememberMe,
+    error,
+    loading,
+    handleSubmit,
+  } = useLoginForm();
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label htmlFor="identifier" className="block text-white mb-2">
-          Usuario o Email
-        </label>
-        <input
+      <div className="space-y-2">
+        <Label htmlFor="identifier">Usuario o Email</Label>
+        <Input
           id="identifier"
           type="text"
           value={identifier}
-          onChange={(e) => setIdentifier(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setIdentifier(e.target.value)
+          }
           placeholder="Usuario o correo electrónico"
           required
+          className="border-2 border-gray-300 hover:-translate-y-0.5 hover:border-none hover:shadow hover:shadow-gray-900 transition-all duration-100"
         />
       </div>
-
-      <div>
-        <label htmlFor="password" className="block text-white mb-2">
-          Contraseña
-        </label>
-        <input
+      <div className="space-y-2">
+        <Label htmlFor="password">Contraseña</Label>
+        <Input
           id="password"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
           placeholder="Tu contraseña"
           required
+          className="border-2 border-gray-300 hover:-translate-y-0.5 hover:border-none hover:shadow hover:shadow-gray-500 transition-all duration-100"
+          disabled={loading}
         />
       </div>
-
-      <div className="flex items-center">
-        <input
+      <div className="flex items-center space-x-2">
+        <Checkbox
           id="rememberMe"
-          type="checkbox"
           checked={rememberMe}
-          onChange={(e) => setRememberMe(e.target.checked)}
-          className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+          onCheckedChange={(checked: boolean) => setRememberMe(checked)}
+          className="cursor-pointer hover:-translate-y-0.5 hover:shadow hover:shadow-gray-500 transition-all duration-100"
+          disabled={loading}
         />
-        <label htmlFor="rememberMe" className="ml-2 block text-white">
-          Recuérdame
-        </label>
+        <Label htmlFor="rememberMe">
+          {rememberMe ? "Recordandote" : "Quien Eres?"}
+        </Label>
       </div>
-
-      <button
+      {error && <Badge variant="destructive">{error}</Badge>}
+      <Button
         type="submit"
-        className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors"
+        className="w-full cursor-pointer hover:-translate-y-0.5 hover:shadow hover:shadow-gray-500 transition-all duration-100 flex items-center justify-center"
+        disabled={loading}
       >
-        Entrar
-      </button>
+        {loading ? (
+          <>
+            <Loader2 className="animate-spin mr-2 h-5 w-5" />
+            Verificando...
+          </>
+        ) : (
+          "Entrar"
+        )}
+      </Button>
     </form>
   );
 };
