@@ -5,14 +5,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Home, Paperclip, Users, Settings } from "lucide-react";
+import { Home, Paperclip, User, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "Inicio", icon: <Home size={20} />, href: "/dashboard" },
   { name: "Nomina", icon: <Paperclip size={20} />, href: "/dashboard/nomina" },
-  { name: "Usuarios", icon: <Users size={20} />, href: "/dashboard/users" },
+  { name: "Perfil", icon: <User size={20} />, href: "/dashboard/profile" },
   {
     name: "Configuración",
     icon: <Settings size={20} />,
