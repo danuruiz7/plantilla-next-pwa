@@ -1,7 +1,11 @@
-export default function DashboardPage() {
+import TitleMain from "@/components/general/TitleMain";
+import { getTranslations } from "next-intl/server";
+
+export default async function DashboardPage() {
+  const t = await getTranslations("DashboardPage");
   return (
     <div>
-      <h1>Dashboard Page</h1>
+      <TitleMain title={t("title")} />
     </div>
   );
 }

@@ -1,7 +1,11 @@
-export default function NominaPage() {
+import TitleMain from "@/components/general/TitleMain";
+import { getTranslations } from "next-intl/server";
+
+export default async function NominaPage() {
+  const t = await getTranslations("NominaPage");
   return (
     <div>
-      <h1>Nomina Page</h1>
+      <TitleMain title={t("title")} />
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 interface ButtonLogOutProps {
   collapsed: boolean;
 }
 
 export const ButtonLogOut = ({ collapsed }: ButtonLogOutProps) => {
+  const t = useTranslations("ButtonLogOut");
   return (
     <Button
       onClick={async () => {
@@ -16,7 +18,7 @@ export const ButtonLogOut = ({ collapsed }: ButtonLogOutProps) => {
       }`}
     >
       <LogOut className="w-5 h-5" />
-      {!collapsed && <span className="text-base">Cerrar sesión</span>}
+      {!collapsed && <span className="text-base">{t("logout")}</span>}
     </Button>
   );
 };

@@ -8,13 +8,14 @@ import {
 import { Home, Paperclip, User, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const navItems = [
-  { name: "Inicio", icon: <Home size={20} />, href: "/dashboard" },
-  { name: "Nomina", icon: <Paperclip size={20} />, href: "/dashboard/nomina" },
-  { name: "Perfil", icon: <User size={20} />, href: "/dashboard/profile" },
+  { key: "home", icon: <Home size={20} />, href: "/dashboard" },
+  { key: "nomina", icon: <Paperclip size={20} />, href: "/dashboard/nomina" },
+  { key: "profile", icon: <User size={20} />, href: "/dashboard/profile" },
   {
-    name: "Configuración",
+    key: "settings",
     icon: <Settings size={20} />,
     href: "/dashboard/settings",
   },
@@ -22,6 +23,7 @@ const navItems = [
 
 const ItemSidebar = ({ collapsed }: { collapsed: boolean }) => {
   const pathname = usePathname();
+  const t = useTranslations("ItemSidebar");
 
   return (
     <nav className="flex-1 mt-4 space-y-2 px-3">
@@ -31,7 +33,7 @@ const ItemSidebar = ({ collapsed }: { collapsed: boolean }) => {
             pathname === item.href ||
             (item.href !== "/dashboard" && pathname.startsWith(item.href));
           return (
-            <Tooltip key={item.name} delayDuration={200}>
+            <Tooltip key={item.key} delayDuration={200}>
               <TooltipTrigger asChild>
                 <Link
                   href={item.href}
@@ -46,12 +48,12 @@ const ItemSidebar = ({ collapsed }: { collapsed: boolean }) => {
                   `}
                 >
                   <span>{item.icon}</span>
-                  {!collapsed && <span className="text-sm">{item.name}</span>}
+                  {!collapsed && <span className="text-sm">{t(item.key)}</span>}
                 </Link>
               </TooltipTrigger>
               {collapsed && (
                 <TooltipContent side="right" className="ml-2">
-                  {item.name}
+                  {t(item.key)}
                 </TooltipContent>
               )}
             </Tooltip>

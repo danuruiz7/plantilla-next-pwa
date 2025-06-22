@@ -1,0 +1,44 @@
+{
+  "login": {
+    "title": "Ponte Pilas",
+    "identifier": "Usuario o Correo (sí, ese con el que te registraste)",
+    "password": "Clave (que no se te olvide otra vez)",
+    "rememberMeChecked": "¡Claro que te recuerdo, pana!",
+    "rememberMeUnchecked": "¿Y tú quién eres, pues?",
+    "submit": "¡Entrar pues!",
+    "verifying": "Dame un chance..."
+  },
+  "ItemSidebar": {
+    "home": "Inicio",
+    "nomina": "Quincena 💸",
+    "profile": "Tu vaina personal",
+    "settings": "Ajustes y marañas"
+  },
+  "ButtonLogOut": {
+    "logout": "Salir echando"
+  },
+  "DashboardPage": {
+    "title": "Tu Ranchito Digital"
+  },
+  "NominaPage": {
+    "title": "Tus Reales"
+  },
+  "ProfilePage": {
+    "title": "Tus datos (no se hacen públicos, tranqui)",
+    "name": "Nombre de pila",
+    "lastname": "Apellido (el que pusieron en el registro civil)",
+    "username": "Apodo digital",
+    "email": "Correo (el serio)",
+    "currentPassword": "Clave actual (sí, esa)",
+    "currentPasswordPlaceholder": "No seas flojo, escríbela",
+    "newPassword": "Clave nueva (ponte creativo)",
+    "newPasswordPlaceholder": "La que vas a usar desde ahora",
+    "language": "Idioma (el que entiendas)",
+    "createdAt": "Desde que existes aquí",
+    "updatedAt": "Última retocada",
+    "lastLogin": "La última vez que apareciste",
+    "confirmPassword": "Confirma que no escribiste mal la clave",
+    "saving": "Guardando... no apagues nada",
+    "save": "¡Dale a guardar!"
+  }
+}
