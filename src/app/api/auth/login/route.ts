@@ -7,7 +7,7 @@ import { sign } from 'jsonwebtoken'
 export async function POST(req: NextRequest) {
   try {
     const { username, password } = await req.json();
-    // console.log(req)
+    console.log({ username, password })
     if (!username || !password) {
       return NextResponse.json({ error: 'Faltan credenciales' }, { status: 400 });
     }
@@ -18,18 +18,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 401 });
     }
     const user = rows[0] as User;
+    console.log({ user })
 
     // Verifica el password
     if (password !== user.password) {
       return NextResponse.json({ error: 'Contraseña incorrecta' }, { status: 401 });
     }
 
+    // Actualiza el campo lastLogin a NOW()
+    await db.query('UPDATE users SET lastLogin = NOW() WHERE id = ?', [user.id]);
+
+
     // Prepara los datos del usuario sin la contraseña
     const userData = {
       userId: user.id,
       username: user.username,
+      name: user.name,
+      lastname: user.lastname,
       email: user.email,
-      lastLogin: user.lastLogin,
+      lastLogin: new Date(),
       createdAt: user.createdAt,
       updatedAt: user.updatedAt
     };

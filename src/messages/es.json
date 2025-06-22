@@ -1,0 +1,44 @@
+{
+  "login": {
+    "title": "Iniciar Sesión",
+    "identifier": "Usuario o Email",
+    "password": "Contraseña",
+    "rememberMeChecked": "Recordándote",
+    "rememberMeUnchecked": "¿Quién eres?",
+    "submit": "Entrar",
+    "verifying": "Verificando..."
+  },
+  "ItemSidebar": {
+    "home": "Inicio",
+    "nomina": "Nómina",
+    "profile": "Perfil",
+    "settings": "Configuración"
+  },
+  "ButtonLogOut": {
+    "logout": "Cerrar sesión"
+  },
+  "DashboardPage": {
+    "title": "Dashboard"
+  },
+  "NominaPage": {
+    "title": "Nomina"
+  },
+  "ProfilePage": {
+    "title": "Información del usuario",
+    "name": "Nombre",
+    "lastname": "Apellido",
+    "username": "Usuario",
+    "email": "Email",
+    "currentPassword": "Contraseña actual",
+    "currentPasswordPlaceholder": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "newPasswordPlaceholder": "Nueva contraseña",
+    "language": "Idioma",
+    "createdAt": "Fecha de creación",
+    "updatedAt": "Fecha de actualización",
+    "lastLogin": "Último acceso",
+    "confirmPassword": "Confirmar contraseña",
+    "saving": "Guardando...",
+    "save": "Guardar"
+  }
+}

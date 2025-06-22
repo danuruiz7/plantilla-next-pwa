@@ -1,0 +1,44 @@
+{
+  "login": {
+    "title": "Sign In",
+    "identifier": "Username or Email",
+    "password": "Password",
+    "rememberMeChecked": "Remembering you",
+    "rememberMeUnchecked": "Who are you?",
+    "submit": "Sign in",
+    "verifying": "Verifying..."
+  },
+  "ItemSidebar": {
+    "home": "Home",
+    "nomina": "Payroll",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "ButtonLogOut": {
+    "logout": "Logout"
+  },
+  "DashboardPage": {
+    "title": "Dashboard"
+  },
+  "NominaPage": {
+    "title": "Payroll"
+  },
+  "ProfilePage": {
+    "title": "User Information",
+    "name": "Name",
+    "lastname": "Last Name",
+    "username": "Username",
+    "email": "Email",
+    "currentPassword": "Current Password",
+    "currentPasswordPlaceholder": "Current Password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "New Password",
+    "language": "Language",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "lastLogin": "Last login",
+    "confirmPassword": "Confirm Password",
+    "saving": "Saving...",
+    "save": "Save"
+  }
+}

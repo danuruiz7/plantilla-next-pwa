@@ -8,7 +8,9 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="text-white p-4 ">{children}</main>
+      <main className="text-white p-4 w-full bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800">
+        {children}
+      </main>
     </div>
   );
 }
