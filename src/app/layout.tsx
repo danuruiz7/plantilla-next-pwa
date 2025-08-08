@@ -4,13 +4,13 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "MenuApp",
+  title: "plantilla",
   description: "App para llevar un registro de tu nominas",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "MenuApp",
+    title: "plantilla",
   },
   icons: {
     apple: "/icon-192x192.png",
@@ -35,7 +35,7 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="MenuApp" />
+        <meta name="apple-mobile-web-app-title" content="plantilla" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </head>
       <body className="bg-gradient-to-br from-black/90 via-black to-black/90 min-h-screen">

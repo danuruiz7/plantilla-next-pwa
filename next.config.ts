@@ -3,7 +3,16 @@ import createNextIntlPlugin from 'next-intl/plugin';
 import withPWAInit from '@ducanh2912/next-pwa';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.watchOptions = {
+        poll: 1000,
+        aggregateTimeout: 300,
+        ignored: /node_modules/,
+      };
+    }
+    return config;
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
