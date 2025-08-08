@@ -5,7 +5,7 @@ export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
   const userData = await validToken();
 
-  // Detecta el idioma preferido del navegador
+  // Detecta el idioma preferido del navegador  =>
   const acceptLanguage = req.headers.get('accept-language');
   let userLocale = 'es'; // valor por defecto
 

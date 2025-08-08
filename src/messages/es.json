@@ -10,7 +10,6 @@
   },
   "ItemSidebar": {
     "home": "Inicio",
-    "nomina": "Nómina",
     "profile": "Perfil",
     "settings": "Configuración"
   },
@@ -19,9 +18,6 @@
   },
   "DashboardPage": {
     "title": "Dashboard"
-  },
-  "NominaPage": {
-    "title": "Nomina"
   },
   "ProfilePage": {
     "title": "Información del usuario",

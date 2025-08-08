@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { User } from "@/entities/User";
+import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function PUT(req: NextRequest) {
@@ -11,11 +10,12 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
     }
 
-    const [rows] = await db.query('SELECT * FROM users WHERE id = ? LIMIT 1', [id]);
-    if (!Array.isArray(rows) || rows.length === 0) {
+    const user = await prisma.user.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!user) {
       return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 401 });
     }
-    const user = rows[0] as User;
 
     if (!user) {
       return NextResponse.json({ error: "Usuario no encontrado" }, { status: 400 });
@@ -24,16 +24,16 @@ export async function PUT(req: NextRequest) {
     let result;
     if (password && password.trim() !== "") {
       // Si viene password, actualiza todo
-      [result] = await db.query(
-        'UPDATE users SET username = ?, name = ?, lastname = ?, password = ?, updatedAt = NOW() WHERE id = ?',
-        [username, name, lastname, password, id]
-      );
+      result = await prisma.user.update({
+        where: { id: Number(id) },
+        data: { username, name, lastname, password, updatedAt: new Date() },
+      });
     } else {
       // Si no viene password, no la actualiza
-      [result] = await db.query(
-        'UPDATE users SET username = ?, name = ?, lastname = ?, updatedAt = NOW() WHERE id = ?',
-        [username, name, lastname, id]
-      );
+      result = await prisma.user.update({
+        where: { id: Number(id) },
+        data: { username, name, lastname, updatedAt: new Date() },
+      });
     }
 
     if (!result) {

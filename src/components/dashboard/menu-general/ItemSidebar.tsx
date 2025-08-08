@@ -1,22 +1,22 @@
 "use client";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Home, Paperclip, User, Settings } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Home, User, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-const navItems = [
-  { key: "home", icon: <Home size={20} />, href: "/dashboard" },
-  { key: "nomina", icon: <Paperclip size={20} />, href: "/dashboard/nomina" },
-  { key: "profile", icon: <User size={20} />, href: "/dashboard/profile" },
+export const navItems = [
+  { key: "home", icon: <Home size={20} />, iconMobile: <Home size={25} />, href: "/dashboard" },
+  {
+    key: "profile",
+    icon: <User size={20} />,
+    iconMobile: <User size={25} />,
+    href: "/dashboard/profile",
+  },
   {
     key: "settings",
     icon: <Settings size={20} />,
+    iconMobile: <Settings size={25} />,
     href: "/dashboard/settings",
   },
 ];
@@ -40,11 +40,7 @@ const ItemSidebar = ({ collapsed }: { collapsed: boolean }) => {
                   className={`flex items-center gap-3 px-4 py-2 rounded group w-full
                       ${collapsed ? "justify-center" : "justify-start"}
                       transition-colors duration-300
-                      ${
-                        isActive
-                          ? "bg-white text-black font-bold"
-                          : "hover:bg-neutral-800"
-                      }
+                      ${isActive ? "bg-white text-black font-bold" : "hover:bg-neutral-800"}
                   `}
                 >
                   <span>{item.icon}</span>

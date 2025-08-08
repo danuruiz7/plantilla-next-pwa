@@ -10,7 +10,6 @@
   },
   "ItemSidebar": {
     "home": "Home",
-    "nomina": "Payroll",
     "profile": "Profile",
     "settings": "Settings"
   },
@@ -19,9 +18,6 @@
   },
   "DashboardPage": {
     "title": "Dashboard"
-  },
-  "NominaPage": {
-    "title": "Payroll"
   },
   "ProfilePage": {
     "title": "User Information",

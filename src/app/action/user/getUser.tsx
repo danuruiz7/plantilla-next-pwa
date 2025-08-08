@@ -1,7 +1,6 @@
 "use server";
 
-import { db } from "@/lib/db";
-import type { User } from "@/entities/User";
+import { prisma } from "@/lib/prisma";
 import { getUserSession } from "@/entities/User";
 
 export const getUser = async () => {
@@ -13,14 +12,13 @@ export const getUser = async () => {
 
   const { userId } = userSession;
 
-  const [rows] = await db.query("SELECT * FROM users WHERE id = ? LIMIT 1", [
-    userId,
-  ]);
-  if (!Array.isArray(rows) || rows.length === 0) {
+  const user = await prisma.user.findUnique({
+    where: { id: Number(userId) },
+  });
+  if (!user) {
     return null;
   }
-  const user = rows[0] as User;
-  console.log({ user });
+  // console.log({ user });
   const userData = {
     userId: user.id,
     username: user.username,

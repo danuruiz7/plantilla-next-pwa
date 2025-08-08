@@ -1,18 +1,10 @@
+import { User as PrismaUser } from '@prisma/client'
 import { cookies } from "next/headers";
 import { validToken } from "@/lib/jwt";
 import { getLocale } from "next-intl/server";
 
-export interface User {
-  id: number;
-  username: string;
-  password: string; // Idealmente, hash
-  name: string;
-  lastname: string;
-  email: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  lastLogin?: Date;
-}
+// Usar el tipo generado por Prisma
+export type User = PrismaUser
 
 export interface UserSession {
   userId: number | string;

@@ -10,7 +10,6 @@
   },
   "ItemSidebar": {
     "home": "Inicio",
-    "nomina": "Quincena 💸",
     "profile": "Tu vaina personal",
     "settings": "Ajustes y marañas"
   },
@@ -19,9 +18,6 @@
   },
   "DashboardPage": {
     "title": "Tu Ranchito Digital"
-  },
-  "NominaPage": {
-    "title": "Tus Reales"
   },
   "ProfilePage": {
     "title": "Tus datos (no se hacen públicos, tranqui)",

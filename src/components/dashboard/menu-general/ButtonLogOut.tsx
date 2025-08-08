@@ -1,11 +1,13 @@
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+
 interface ButtonLogOutProps {
   collapsed: boolean;
+  isMobile?: boolean;
 }
 
-export const ButtonLogOut = ({ collapsed }: ButtonLogOutProps) => {
+export const ButtonLogOut = ({ collapsed, isMobile }: ButtonLogOutProps) => {
   const t = useTranslations("ButtonLogOut");
   return (
     <Button
@@ -13,12 +15,20 @@ export const ButtonLogOut = ({ collapsed }: ButtonLogOutProps) => {
         await fetch("/api/auth/logout", { method: "POST" });
         window.location.href = "/login";
       }}
-      className={`flex items-center gap-3 px-2 py-2 cursor-pointer rounded border border-transparent bg-red-900 transition group w-full hover:bg-white hover:text-red-900 hover:border-red-900 ${
-        collapsed ? "justify-center" : "justify-center"
-      }`}
+      title={t("logout")}
+      className={`flex items-center justify-center px-3 py-1 rounded-lg border-0 bg-transparent transition-all duration-200 group
+        ${
+          isMobile
+            ? "text-red-500 hover:bg-red-900/20 hover:text-white active:bg-red-900/40 scale-110"
+            : "gap-3 px-2 py-2 w-full bg-red-900 hover:bg-white hover:text-red-900 hover:border-red-900"
+        }
+      `}
+      aria-label={t("logout")}
     >
-      <LogOut className="w-5 h-5" />
-      {!collapsed && <span className="text-base">{t("logout")}</span>}
+      {!collapsed && (
+        <span className={`text-xs font-medium ${isMobile ? "hidden" : ""}`}>{t("logout")}</span>
+      )}
+      <LogOut />
     </Button>
   );
 };

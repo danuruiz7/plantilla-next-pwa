@@ -1,23 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import type { User } from '@/entities/User';
+import { prisma } from '@/lib/prisma';
 import { sign } from 'jsonwebtoken'
-
 
 export async function POST(req: NextRequest) {
   try {
     const { username, password } = await req.json();
     console.log({ username, password })
+
     if (!username || !password) {
       return NextResponse.json({ error: 'Faltan credenciales' }, { status: 400 });
     }
 
-    // Busca el usuario por username
-    const [rows] = await db.query('SELECT * FROM users WHERE username = ? LIMIT 1', [username]);
-    if (!Array.isArray(rows) || rows.length === 0) {
+    // Busca el usuario por username usando Prisma
+    const user = await prisma.user.findUnique({
+      where: { username }
+    });
+
+    if (!user) {
       return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 401 });
     }
-    const user = rows[0] as User;
+
     console.log({ user })
 
     // Verifica el password
@@ -25,9 +27,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Contraseña incorrecta' }, { status: 401 });
     }
 
-    // Actualiza el campo lastLogin a NOW()
-    await db.query('UPDATE users SET lastLogin = NOW() WHERE id = ?', [user.id]);
-
+    // Actualiza el campo lastLogin usando Prisma
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() }
+    });
 
     // Prepara los datos del usuario sin la contraseña
     const userData = {
@@ -45,6 +49,7 @@ export async function POST(req: NextRequest) {
     if (!JWT_SECRET) {
       throw new Error('JWT_SECRET no está definida en el .env');
     }
+
     const token = sign(
       userData,
       JWT_SECRET,

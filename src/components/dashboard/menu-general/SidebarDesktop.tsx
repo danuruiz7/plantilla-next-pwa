@@ -5,12 +5,12 @@ import ItemSidebar from "./ItemSidebar";
 import { ButtonLogOut } from "./ButtonLogOut";
 import { Button } from "@/components/ui/button";
 
-export default function Sidebar() {
+export default function SidebarDesktop() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
     <aside
-      className={`h-screen bg-neutral-900 text-white flex flex-col transition-all duration-300 ${
+      className={` hidden md:flex h-screen bg-neutral-900 text-white flex-col transition-all duration-300 ${
         collapsed ? "w-16" : "w-58"
       }`}
     >
