@@ -4,9 +4,11 @@ import { SquareArrowRight, SquareArrowLeft } from "lucide-react";
 import ItemSidebar from "./ItemSidebar";
 import { ButtonLogOut } from "./ButtonLogOut";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export default function SidebarDesktop() {
   const [collapsed, setCollapsed] = useState(false);
+  const t = useTranslations("General");
 
   return (
     <aside
@@ -21,7 +23,7 @@ export default function SidebarDesktop() {
       >
         {!collapsed && (
           <div className="px-4 py-2 text-md text-neutral-300 font-semibold whitespace-nowrap">
-            Nombre de la APP
+            {t("appName")}
           </div>
         )}
         <Button

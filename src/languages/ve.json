@@ -36,5 +36,8 @@
     "confirmPassword": "Confirma que no escribiste mal la clave",
     "saving": "Guardando... no apagues nada",
     "save": "¡Dale a guardar!"
+  },
+  "General": {
+    "appName": "App Name"
   }
 }

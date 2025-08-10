@@ -36,5 +36,8 @@
     "confirmPassword": "Confirmar contraseña",
     "saving": "Guardando...",
     "save": "Guardar"
+  },
+  "General": {
+    "appName": "App Name"
   }
 }
