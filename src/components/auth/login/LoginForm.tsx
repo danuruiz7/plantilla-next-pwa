@@ -32,9 +32,7 @@ const LoginForm = () => {
             id="identifier"
             type="text"
             value={identifier}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setIdentifier(e.target.value)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIdentifier(e.target.value)}
             placeholder={t("identifier")}
             required
             className="border-2 border-gray-300 hover:-translate-y-0.5 hover:border-none hover:shadow hover:shadow-gray-900 transition-all duration-100"
@@ -46,9 +44,7 @@ const LoginForm = () => {
             id="password"
             type="password"
             value={password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             placeholder={t("password")}
             required
             className="border-2 border-gray-300 hover:-translate-y-0.5 hover:border-none hover:shadow hover:shadow-gray-500 transition-all duration-100"
